@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apna Mens Wear</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#0f172a;
+--accent:#2563eb;
+--light:#f8fafc;
+--card:#ffffff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:var(--light);color:var(--primary);}
+
+header{
+background:var(--primary);
+color:white;
+padding:20px;
+text-align:center;
+}
+
+header h1{font-size:26px;}
+header p{font-size:14px;color:#cbd5e1;margin-top:4px;}
+
+.locations{
+font-size:13px;
+margin-top:10px;
+}
+
+.container{padding:15px;max-width:1200px;margin:auto;}
+
+.filters{
+display:flex;
+gap:8px;
+overflow:auto;
+margin-bottom:15px;
+}
+
+.filters button{
+padding:8px 14px;
+border:none;
+background:#e2e8f0;
+border-radius:20px;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.filters button.active{
+background:var(--accent);
+color:white;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:15px;
+}
+
+.card{
+background:var(--card);
+border-radius:12px;
+padding:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+transition:0.3s;
+}
+
+.card:hover{transform:translateY(-5px);}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{font-size:15px;margin:8px 0 4px;}
+.price{font-weight:600;color:var(--accent);}
+.card button{
+margin-top:8px;
+width:100%;
+padding:8px;
+background:var(--accent);
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* Cart Button */
+.cart-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:var(--accent);
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+cursor:pointer;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+.cart-count{
+position:absolute;
+top:-5px;
+right:-5px;
+background:red;
+color:white;
+font-size:12px;
+padding:2px 6px;
+border-radius:50%;
+}
+
+/* Cart Modal */
+.cart-modal{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.4);
+display:none;
+align-items:center;
+justify-content:center;
+}
+
+.cart-content{
+background:white;
+width:95%;
+max-width:500px;
+max-height:90%;
+overflow:auto;
+padding:20px;
+border-radius:10px;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.qty{
+display:flex;
+gap:5px;
+align-items:center;
+}
+
+.qty button{
+padding:3px 8px;
+}
+
+.total{
+font-weight:700;
+margin-top:10px;
+}
+
+.checkout-form input, .checkout-form textarea{
+width:100%;
+padding:8px;
+margin:6px 0;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.checkout-form button{
+width:100%;
+padding:10px;
+background:var(--primary);
+color:white;
+border:none;
+border-radius:8px;
+margin-top:10px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:90px;
+right:20px;
+background:#25D366;
+color:white;
+padding:10px 15px;
+border-radius:30px;
+text-decoration:none;
+font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Apna Mens Wear</h1>
+<p>Aapka Style, Aapki Pehchan</p>
+<div class="locations">
+SHOP 1 - 40 Bholaram Ustad Marg, Bhawarkua Indore 📍<br>
+SHOP 2 - 16/2 Manik Bagh Main Road Indore 📍<br>
+📞 9630105490
+</div>
+</header>
+
+<div class="container">
+
+<div class="filters">
+<button class="active" onclick="filterProducts('All')">All</button>
+<button onclick="filterProducts('Shirt')">Shirts</button>
+<button onclick="filterProducts('Trousers')">Trousers</button>
+<button onclick="filterProducts('Trackpant')">Trackpant</button>
+</div>
+
+<div class="grid" id="productGrid"></div>
+</div>
+
+<div class="cart-btn" onclick="openCart()">
+🛒 <div class="cart-count" id="cartCount">0</div>
+</div>
+
+<a class="whatsapp" href="https://wa.me/919630105490" target="_blank">
+Chat on WhatsApp
+</a>
+
+<div class="cart-modal" id="cartModal">
+<div class="cart-content">
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<div class="total" id="cartTotal"></div>
+
+<div class="checkout-form">
+<form action="https://formspree.io/f/xbdabyza" method="POST" onsubmit="prepareOrder(event)">
+<input type="text" name="Customer Name" placeholder="Your Name" required>
+<input type="tel" name="Phone Number" placeholder="Phone Number" required>
+<textarea name="Delivery Address" placeholder="Delivery Address" required></textarea>
+<textarea name="Special Instructions" placeholder="Special Instructions (Optional)"></textarea>
+
+<input type="hidden" name="Order Summary" id="orderSummary">
+
+<button type="submit">Place Order</button>
+</form>
+</div>
+
+<button onclick="closeCart()">Close</button>
+</div>
+</div>
+
+<script>
+const products=[
+{name:"Premium Shirt Checked 1",price:899,category:"Shirt",img:"https://i.ibb.co/dsL742cT/IMG-20260227-225649.jpg"},
+{name:"Premium Shirt Checked 2",price:899,category:"Shirt",img:"https://i.ibb.co/NgNdHr01/IMG-20260227-225640.jpg"},
+{name:"Premium Shirt Checked 3",price:899,category:"Shirt",img:"https://i.ibb.co/pvLGWtpV/IMG-20260227-225630.jpg"},
+{name:"Premium Shirt Checked 4",price:899,category:"Shirt",img:"https://i.ibb.co/KzLjnW14/IMG-20260227-225621.jpg"},
+{name:"Linen Pant",price:1199,category:"Trousers",img:"https://i.ibb.co/KzLjnW14/IMG-20260227-225621.jpg"},
+{name:"Baggy Trackpant Trending",price:999,category:"Trackpant",img:"https://i.ibb.co/3myMpMzw/IMG-20260227-225609.jpg"}
+];
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+function renderProducts(list){
+const grid=document.getElementById("productGrid");
+grid.innerHTML="";
+list.forEach((p,i)=>{
+grid.innerHTML+=`
+<div class="card">
+<img src="${p.img}" alt="${p.name}" loading="lazy">
+<h3>${p.name}</h3>
+<div class="price">₹${p.price}</div>
+<button onclick="addToCart(${i})">Add to Cart</button>
+</div>`;
+});
+}
+
+function filterProducts(cat){
+document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+event.target.classList.add('active');
+if(cat==="All") renderProducts(products);
+else renderProducts(products.filter(p=>p.category===cat));
+}
+
+function addToCart(index){
+let product=products[index];
+let item=cart.find(p=>p.name===product.name);
+if(item) item.qty++;
+else cart.push({...product,qty:1});
+saveCart();
+}
+
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
+updateCartCount();
+}
+
+function updateCartCount(){
+document.getElementById("cartCount").innerText=
+cart.reduce((sum,p)=>sum+p.qty,0);
+}
+
+function openCart(){
+renderCart();
+document.getElementById("cartModal").style.display="flex";
+}
+
+function closeCart(){
+document.getElementById("cartModal").style.display="none";
+}
+
+function renderCart(){
+const cartItems=document.getElementById("cartItems");
+cartItems.innerHTML="";
+let total=0;
+cart.forEach((item,i)=>{
+let subtotal=item.price*item.qty;
+total+=subtotal;
+cartItems.innerHTML+=`
+<div class="cart-item">
+<div>${item.name} (₹${item.price})</div>
+<div class="qty">
+<button onclick="changeQty(${i},-1)">-</button>
+${item.qty}
+<button onclick="changeQty(${i},1)">+</button>
+<button onclick="removeItem(${i})">❌</button>
+</div>
+</div>`;
+});
+document.getElementById("cartTotal").innerText="Total: ₹"+total;
+}
+
+function changeQty(i,delta){
+cart[i].qty+=delta;
+if(cart[i].qty<=0) cart.splice(i,1);
+saveCart();
+renderCart();
+}
+
+function removeItem(i){
+cart.splice(i,1);
+saveCart();
+renderCart();
+}
+
+function prepareOrder(e){
+let summary="";
+let total=0;
+cart.forEach(item=>{
+summary+=`${item.name} x ${item.qty} = ₹${item.price*item.qty}\n`;
+total+=item.price*item.qty;
+});
+summary+="\nGrand Total: ₹"+total;
+document.getElementById("orderSummary").value=summary;
+
+setTimeout(()=>{
+alert("Order placed! Apna Mens Wear will contact you on WhatsApp to confirm.");
+cart=[];
+saveCart();
+closeCart();
+},1000);
+}
+
+renderProducts(products);
+updateCartCount();
+</script>
+
+</body>
+</html>
