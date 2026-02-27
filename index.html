@@ -3,339 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apna Mens Wear</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Apna Men Wear | Premium Men's Fashion</title>
+<meta name="description" content="Apna Men Wear - Premium Men's Fashion Collection in Bhawarkua. Quality fabric, latest trends, affordable pricing.">
 <style>
-:root{
-  --primary:#0f172a;
-  --accent:#2563eb;
-  --bg:#f8fafc;
-  --card:#ffffff;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-
-body{background:var(--bg);color:#111;}
-
-header{
-  background:var(--primary);
-  color:#fff;
-  padding:20px;
-  text-align:center;
-}
-
-header h1{font-size:24px;}
-header p{font-size:14px;opacity:.9;}
-header .info{margin-top:8px;font-size:12px;opacity:.8;}
-
-.filters{
-  display:flex;
-  gap:10px;
-  padding:15px;
-  overflow-x:auto;
-  background:#fff;
-  position:sticky;
-  top:0;
-  z-index:5;
-}
-
-.filters button{
-  padding:8px 14px;
-  border:none;
-  border-radius:20px;
-  background:#e2e8f0;
-  cursor:pointer;
-  font-size:13px;
-  white-space:nowrap;
-}
-
-.filters button.active{
-  background:var(--accent);
-  color:#fff;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:15px;
-  padding:15px;
-}
-
-.card{
-  background:var(--card);
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,.05);
-  transition:.2s;
-}
-
-.card:hover{transform:translateY(-3px);}
-
-.card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:10px;
-}
-
-.card h3{
-  font-size:14px;
-  margin-bottom:5px;
-}
-
-.price{
-  font-weight:600;
-  margin-bottom:8px;
-}
-
-.card button{
-  width:100%;
-  padding:8px;
-  background:var(--accent);
-  border:none;
-  color:#fff;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:13px;
-}
-
-.cart-icon{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:var(--accent);
-  color:#fff;
-  padding:12px 15px;
-  border-radius:50px;
-  cursor:pointer;
-  box-shadow:0 6px 15px rgba(0,0,0,.2);
-}
-
-.cart-count{
-  background:#fff;
-  color:var(--accent);
-  padding:2px 6px;
-  border-radius:50%;
-  font-size:12px;
-  margin-left:5px;
-}
-
-.cart-modal{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:100%;
-  max-width:400px;
-  height:100%;
-  background:#fff;
-  box-shadow:-5px 0 20px rgba(0,0,0,.2);
-  transition:.3s;
-  padding:20px;
-  overflow-y:auto;
-  z-index:10;
-}
-
-.cart-modal.active{right:0;}
-
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-
-.qty-controls button{
-  padding:3px 8px;
-  margin:0 3px;
-}
-
-.total{
-  font-weight:700;
-  margin:15px 0;
-}
-
-.checkout-form input, .checkout-form textarea{
-  width:100%;
-  padding:8px;
-  margin-bottom:10px;
-  border:1px solid #ccc;
-  border-radius:6px;
-}
-
-.checkout-form button{
-  width:100%;
-  padding:10px;
-  background:var(--primary);
-  color:#fff;
-  border:none;
-  border-radius:6px;
-}
-
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:#25D366;
-  color:#fff;
-  padding:12px 16px;
-  border-radius:30px;
-  text-decoration:none;
-  font-size:14px;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+body{background:#0f0f0f;color:#fff;scroll-behavior:smooth;}
+header{background:#000;padding:15px 50px;display:flex;justify-content:space-between;align-items:center;position:fixed;width:100%;top:0;z-index:1000;}
+header h1{color:gold;font-size:22px;}
+nav a{color:#fff;margin-left:20px;text-decoration:none;font-size:14px;}
+nav a:hover{color:gold;}
+section{padding:100px 50px;}
+.hero{height:100vh;background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1520975922284-7b0d6f4b6c7d');background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.hero h2{font-size:48px;color:gold;}
+.hero p{margin:15px 0;font-size:18px;}
+.btn{display:inline-block;margin:10px;padding:12px 25px;background:gold;color:#000;text-decoration:none;border-radius:5px;font-weight:bold;transition:0.3s;}
+.btn:hover{background:#fff;}
+.about, .why, .contact{background:#111;}
+.products{background:#1a1a1a;}
+h3{color:gold;margin-bottom:20px;font-size:28px;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.card{background:#000;padding:15px;border-radius:8px;text-align:center;transition:0.3s;}
+.card:hover{transform:translateY(-5px);}
+.card img{width:100%;height:200px;object-fit:cover;border-radius:5px;}
+.card h4{margin:10px 0;}
+.why ul{list-style:none;text-align:center;}
+.why li{margin:10px 0;font-size:16px;}
+form{max-width:500px;margin:auto;display:flex;flex-direction:column;}
+form input, form textarea{margin:10px 0;padding:10px;border:none;border-radius:5px;}
+form button{padding:12px;background:gold;border:none;border-radius:5px;font-weight:bold;cursor:pointer;}
+form button:hover{background:#fff;}
+.footer{background:#000;text-align:center;padding:20px;font-size:14px;}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:green;color:#fff;padding:12px 18px;border-radius:50px;text-decoration:none;font-weight:bold;}
+@media(max-width:768px){
+.hero h2{font-size:32px;}
+section{padding:80px 20px;}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Apna Mens Wear</h1>
-  <p>Aapka Style, Aapki Pehchan</p>
-  <div class="info">
-    SHOP 1 - 40 BHOLARAM USTAD MARG MARKET BHAWARKUA INDORE 📍 <br>
-    📞 9630105490
-  </div>
+<h1>Apna Men Wear</h1>
+<nav>
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
-<div class="filters">
-  <button class="active" onclick="filterProducts('All')">All</button>
-  <button onclick="filterProducts('Shirt')">Shirts</button>
-  <button onclick="filterProducts('Trousers')">Trousers</button>
-  <button onclick="filterProducts('Trackpant')">Trackpant</button>
+<section class="hero">
+<h2>Premium Men’s Fashion Collection</h2>
+<p>Latest Trends | Quality Fabric | Affordable Prices</p>
+<a href="#products" class="btn">Shop Now</a>
+<a href="https://wa.me/919630105490" class="btn">Contact on WhatsApp</a>
+</section>
+
+<section id="about" class="about">
+<h3>About Us</h3>
+<p style="text-align:center;max-width:700px;margin:auto;">
+Apna Men Wear offers stylish and premium men's clothing in Bhawarkua. 
+We provide high-quality fabrics, latest fashion trends, and affordable pricing to make you look confident and classy.
+</p>
+</section>
+
+<section id="products" class="products">
+<h3>Our Products</h3>
+<div class="grid">
+
+<div class="card">
+<img src="shirt1.jpg" alt="Men Shirt">
+<h4>Stylish Check Shirt</h4>
+<p>₹449</p>
 </div>
 
-<div class="products" id="productList"></div>
-
-<div class="cart-icon" onclick="toggleCart()">
-  🛒 <span class="cart-count" id="cartCount">0</span>
+<div class="card">
+<img src="shirt2.jpg" alt="Men Shirt">
+<h4>Premium Stripe Shirt</h4>
+<p>₹449</p>
 </div>
 
-<div class="cart-modal" id="cartModal">
-  <h2>Your Cart</h2>
-  <div id="cartItems"></div>
-  <div class="total">Total: ₹<span id="cartTotal">0</span></div>
-
-  <form action="https://formspree.io/f/xbdabyza" method="POST" class="checkout-form" onsubmit="prepareOrder(event)">
-    <input type="hidden" name="Order Details" id="orderDetails">
-    <input type="text" name="Customer Name" placeholder="Your Name" required>
-    <input type="text" name="Phone Number" placeholder="Phone Number" required>
-    <textarea name="Delivery Address" placeholder="Delivery Address" required></textarea>
-    <textarea name="Special Instructions" placeholder="Any special instructions (optional)"></textarea>
-    <button type="submit">Place Order</button>
-  </form>
-
-  <p id="confirmation" style="color:green;margin-top:10px;"></p>
+<div class="card">
+<img src="shirt3.jpg" alt="Men Shirt">
+<h4>Blue Casual Shirt</h4>
+<p>₹449</p>
 </div>
 
-<a class="whatsapp" href="https://wa.me/919630105490" target="_blank">Chat on WhatsApp</a>
+<div class="card">
+<img src="pant.jpg" alt="Men Pant">
+<h4>Men's Pant</h4>
+<p>₹499</p>
+</div>
 
-<script>
-const products = [
-{ id:1,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/dsL742cT/IMG-20260227-225649.jpg",desc:"Stylish checked cotton shirt"},
-{ id:2,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/NgNdHr01/IMG-20260227-225640.jpg",desc:"Trendy slim fit shirt"},
-{ id:3,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/pvLGWtpV/IMG-20260227-225630.jpg",desc:"Comfortable full sleeve shirt"},
-{ id:4,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/KzLjnW14/IMG-20260227-225621.jpg",desc:"Modern design shirt"},
-{ id:5,name:"Linen Pant",price:599,category:"Trousers",image:"https://i.ibb.co/KzLjnW14/IMG-20260227-225621.jpg",desc:"Premium linen trouser"},
-{ id:6,name:"Baggy Trackpant Trending",price:350,category:"Trackpant",image:"https://i.ibb.co/3myMpMzw/IMG-20260227-225609.jpg",desc:"Trending loose fit trackpant"},
-];
+<div class="card">
+<img src="trackpants.jpg" alt="Trackpants">
+<h4>Comfort Trackpants</h4>
+<p>₹350</p>
+</div>
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+</div>
+</section>
 
-function renderProducts(list){
-  const container=document.getElementById("productList");
-  container.innerHTML="";
-  list.forEach(p=>{
-    container.innerHTML+=`
-    <div class="card">
-      <img src="${p.image}" alt="${p.name}" loading="lazy">
-      <div class="card-content">
-        <h3>${p.name}</h3>
-        <div class="price">₹${p.price}</div>
-        <button onclick="addToCart(${p.id})">Add to Cart</button>
-      </div>
-    </div>`;
-  });
-}
+<section class="why">
+<h3>Why Choose Us</h3>
+<ul>
+<li>✔ Quality Fabric</li>
+<li>✔ Affordable Pricing</li>
+<li>✔ Latest Fashion Trends</li>
+<li>✔ Friendly Customer Service</li>
+</ul>
+</section>
 
-function filterProducts(category){
-  document.querySelectorAll(".filters button").forEach(btn=>btn.classList.remove("active"));
-  event.target.classList.add("active");
-  if(category==="All") renderProducts(products);
-  else renderProducts(products.filter(p=>p.category===category));
-}
+<section id="contact" class="contact">
+<h3>Contact Us</h3>
+<form action="https://formspree.io/f/xbdabyza" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="tel" name="phone" placeholder="Your Phone" required>
+<textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
 
-function addToCart(id){
-  const item=cart.find(p=>p.id===id);
-  if(item){item.qty++;}
-  else{cart.push({...products.find(p=>p.id===id),qty:1});}
-  saveCart();
-}
+<p style="text-align:center;margin-top:20px;">
+📍 Shop 1 - 40, Bholaram Ustad Marg Market, Bhawarkua <br>
+📞 9630105490
+</p>
+</section>
 
-function saveCart(){
-  localStorage.setItem("cart",JSON.stringify(cart));
-  updateCartUI();
-}
+<div class="footer">
+© 2026 Apna Men Wear | All Rights Reserved
+</div>
 
-function updateCartUI(){
-  document.getElementById("cartCount").innerText=cart.reduce((a,b)=>a+b.qty,0);
-  const container=document.getElementById("cartItems");
-  container.innerHTML="";
-  let total=0;
-  cart.forEach(item=>{
-    total+=item.price*item.qty;
-    container.innerHTML+=`
-    <div class="cart-item">
-      <div>
-        <strong>${item.name}</strong><br>
-        ₹${item.price} x ${item.qty}
-      </div>
-      <div class="qty-controls">
-        <button onclick="changeQty(${item.id},-1)">-</button>
-        <button onclick="changeQty(${item.id},1)">+</button>
-        <button onclick="removeItem(${item.id})">x</button>
-      </div>
-    </div>`;
-  });
-  document.getElementById("cartTotal").innerText=total;
-}
-
-function changeQty(id,delta){
-  const item=cart.find(p=>p.id===id);
-  item.qty+=delta;
-  if(item.qty<=0) cart=cart.filter(p=>p.id!==id);
-  saveCart();
-}
-
-function removeItem(id){
-  cart=cart.filter(p=>p.id!==id);
-  saveCart();
-}
-
-function toggleCart(){
-  document.getElementById("cartModal").classList.toggle("active");
-}
-
-function prepareOrder(e){
-  e.preventDefault();
-  if(cart.length===0){alert("Cart is empty");return;}
-  let summary="";
-  let total=0;
-  cart.forEach(item=>{
-    summary+=`${item.name} - Qty: ${item.qty} - ₹${item.price*item.qty}\n`;
-    total+=item.price*item.qty;
-  });
-  summary+=`\nTotal: ₹${total}`;
-  document.getElementById("orderDetails").value=summary;
-  e.target.submit();
-  cart=[];
-  saveCart();
-  document.getElementById("confirmation").innerText="Order placed! Apna Mens Wear will contact you on WhatsApp to confirm.";
-}
-
-renderProducts(products);
-updateCartUI();
-</script>
+<a href="https://wa.me/919630105490" class="whatsapp-float">WhatsApp</a>
 
 </body>
 </html>
