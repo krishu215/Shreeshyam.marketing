@@ -61,102 +61,31 @@ header .info{margin-top:8px;font-size:12px;opacity:.8;}
   padding:15px;
 }
 
-.card{
-  background:var(--card);
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,.05);
-  transition:.2s;
-}
-
-.card:hover{transform:translateY(-3px);}
-
-.card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:10px;
-}
-
-.card h3{
-  font-size:14px;
-  margin-bottom:5px;
-}
-
-.price{
-  font-weight:600;
-  margin-bottom:8px;
-}
-
 .card button{
   width:100%;
-  padding:8px;
-  background:var(--accent);
+  padding:10px;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
   border:none;
   color:#fff;
-  border-radius:6px;
+  border-radius:30px;
   cursor:pointer;
-  font-size:13px;
-}
-
-.cart-icon{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:var(--accent);
-  color:#fff;
-  padding:12px 15px;
-  border-radius:50px;
-  cursor:pointer;
-  box-shadow:0 6px 15px rgba(0,0,0,.2);
-}
-
-.cart-count{
-  background:#fff;
-  color:var(--accent);
-  padding:2px 6px;
-  border-radius:50%;
-  font-size:12px;
-  margin-left:5px;
-}
-
-.cart-modal{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:100%;
-  max-width:400px;
-  height:100%;
-  background:#fff;
-  box-shadow:-5px 0 20px rgba(0,0,0,.2);
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.5px;
   transition:.3s;
-  padding:20px;
-  overflow-y:auto;
-  z-index:10;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
 }
 
-.cart-modal.active{right:0;}
-:root{
-  --primary:#0f172a;
-  --accent:#d4af37;
-  --accent2:#2563eb;
-  --bg:#f1f5f9;
-  --card:#ffffff;
+.card button::before{
+  content:"🛒";
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
-
-body{
-  background:var(--bg);
-  color:#111;
+.card button:hover{
+  background:linear-gradient(135deg,#1e40af,#0f172a);
+  transform:scale(1.03);
 }
 
 /* HEADER */
@@ -518,7 +447,6 @@ const products = [
 { id:1,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/dsL742cT/IMG-20260227-225649.jpg",desc:"Stylish checked cotton shirt"},
 { id:2,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/NgNdHr01/IMG-20260227-225640.jpg",desc:"Trendy slim fit shirt"},
 { id:3,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/pvLGWtpV/IMG-20260227-225630.jpg",desc:"Comfortable full sleeve shirt"},
-{ id:4,name:"Premium Shirt Checked",price:450,category:"Shirt",image:"https://i.ibb.co/KzLjnW14/IMG-20260227-225621.jpg",desc:"Modern design shirt"},
 { id:5,name:"Linen Pant",price:599,category:"Trousers",image:"https://i.ibb.co/KzLjnW14/IMG-20260227-225621.jpg",desc:"Premium linen trouser"},
 { id:6,name:"Baggy Trackpant Trending",price:350,category:"Trackpant",image:"https://i.ibb.co/3myMpMzw/IMG-20260227-225609.jpg",desc:"Trending loose fit trackpant"},
 ];
@@ -596,7 +524,14 @@ function removeItem(id){
 }
 
 function toggleCart(){
-  document.getElementById("cartModal").classList.toggle("active");
+  const modal = document.getElementById("cartModal");
+
+  if(!modal.classList.contains("active")){
+    modal.classList.add("active");
+    history.pushState({cartOpen:true}, "");
+  }else{
+    modal.classList.remove("active");
+  }
 }
 
 function prepareOrder(e){
@@ -622,3 +557,9 @@ updateCartUI();
 
 </body>
 </html>
+window.addEventListener("popstate", function(event){
+  const modal = document.getElementById("cartModal");
+  if(modal.classList.contains("active")){
+    modal.classList.remove("active");
+  }
+});
