@@ -4,301 +4,185 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apna Mens Wear | Indore</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: 'Segoe UI', sans-serif;
-}
-
-body{
-background:#0f0f14;
-color:#fff;
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 60px;
-background:#14141b;
-box-shadow:0 4px 15px rgba(0,0,0,0.5);
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.logo{
-font-size:22px;
-font-weight:700;
-color:#ffcc00;
-}
-
-.cart-btn{
-background:#ffcc00;
-color:#000;
-padding:8px 18px;
-border:none;
-border-radius:25px;
-cursor:pointer;
-font-weight:600;
-}
-
-/* HERO */
-.hero{
-height:70vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-background:linear-gradient(to right,#1c1c26,#101018);
-padding:20px;
-}
-
-.hero h1{
-font-size:42px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:18px;
-color:#bbb;
-margin-bottom:25px;
-max-width:600px;
-}
-
-.hero a{
-padding:12px 28px;
-background:#25D366;
-color:#fff;
-text-decoration:none;
-border-radius:30px;
-font-weight:600;
-}
-
-/* PRODUCTS */
-.products{
-padding:60px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-
-.card{
-background:#1b1b24;
-border-radius:15px;
-overflow:hidden;
-transition:0.3s;
-box-shadow:0 5px 20px rgba(0,0,0,0.4);
-}
-
-.card:hover{
-transform:translateY(-10px);
-}
-
-.card img{
-width:100%;
-height:320px;
-object-fit:cover;
-}
-
-.card-body{
-padding:15px;
-}
-
-.card-body h3{
-font-size:18px;
-margin-bottom:10px;
-}
-
-.price{
-color:#ffcc00;
-font-size:16px;
-margin-bottom:10px;
-}
-
-.add-btn{
-width:100%;
-padding:10px;
-border:none;
-background:#ffcc00;
-color:#000;
-font-weight:600;
-border-radius:8px;
-cursor:pointer;
-}
-
-/* CART DRAWER */
-.cart{
-position:fixed;
-right:-400px;
-top:0;
-width:350px;
-height:100vh;
-background:#14141b;
-box-shadow:-5px 0 20px rgba(0,0,0,0.6);
-padding:20px;
-transition:0.4s;
-z-index:2000;
-display:flex;
-flex-direction:column;
-}
-
-.cart.active{
-right:0;
-}
-
-.cart h2{
-margin-bottom:15px;
-}
-
-.cart-items{
-flex:1;
-overflow-y:auto;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin-bottom:12px;
-background:#1c1c26;
-padding:10px;
-border-radius:8px;
-}
-
-.close-cart{
-background:#ff4444;
-color:#fff;
-border:none;
-padding:6px 12px;
-border-radius:6px;
-cursor:pointer;
-margin-bottom:15px;
-}
-
-.total{
-margin-top:15px;
-font-weight:bold;
-color:#ffcc00;
-}
-
-/* FOOTER */
-footer{
-background:#14141b;
-padding:30px;
-text-align:center;
-color:#bbb;
-margin-top:40px;
-}
-
-footer p{
-margin:5px 0;
-}
-
-footer a{
-color:#25D366;
-text-decoration:none;
-}
-
-</style>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<nav>
-<div class="logo">Apna Mens Wear</div>
-<button class="cart-btn" onclick="openCart()">Cart (<span id="count">0</span>)</button>
-</nav>
+<body class="bg-black text-white">
 
-<section class="hero">
-<h1>Premium Mens Collection</h1>
-<p>Exclusive fashion for modern men. Visit our store in Bhawarkua, Indore or order directly on WhatsApp.</p>
-<a href="https://wa.me/919630105490" target="_blank">Chat on WhatsApp</a>
+<!-- ================= HEADER ================= -->
+<header class="bg-zinc-900 shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    
+    <h1 class="text-xl font-bold tracking-wide">
+      Apna Mens Wear
+    </h1>
+
+    <div class="hidden md:flex items-center bg-zinc-800 px-3 py-2 rounded-lg w-1/3">
+      <input type="text" placeholder="Search products..."
+        class="bg-transparent outline-none text-sm w-full text-white">
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <button class="md:hidden">🔍</button>
+      <button class="relative">
+        🛒
+        <span class="absolute -top-2 -right-2 bg-red-600 text-xs px-1 rounded-full">2</span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ================= HERO SECTION ================= -->
+<section class="relative bg-cover bg-center h-[70vh]"
+  style="background-image:url('https://images.unsplash.com/photo-1520975922284-6a4b0d8c9c9c');">
+
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="relative flex flex-col items-center justify-center h-full text-center px-4">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+      New Collection 2026
+    </h2>
+    <button class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition">
+      Shop Now
+    </button>
+  </div>
 </section>
 
-<section class="products">
 
-<div class="card">
-<img src="https://picsum.photos/400/500?1">
-<div class="card-body">
-<h3>Premium Casual Shirt</h3>
-<div class="price">₹1499</div>
-<button class="add-btn" onclick="addToCart('Premium Casual Shirt',1499)">Add to Cart</button>
-</div>
-</div>
+<!-- ================= CATEGORIES ================= -->
+<section class="py-10 px-4">
+  <h3 class="text-2xl font-semibold mb-6">Shop by Category</h3>
 
-<div class="card">
-<img src="https://picsum.photos/400/500?2">
-<div class="card-body">
-<h3>Stylish Denim Jacket</h3>
-<div class="price">₹2999</div>
-<button class="add-btn" onclick="addToCart('Stylish Denim Jacket',2999)">Add to Cart</button>
-</div>
-</div>
+  <div class="grid grid-cols-3 md:grid-cols-5 gap-4 text-center">
 
-<div class="card">
-<img src="https://picsum.photos/400/500?3">
-<div class="card-body">
-<h3>Classic Black Hoodie</h3>
-<div class="price">₹1999</div>
-<button class="add-btn" onclick="addToCart('Classic Black Hoodie',1999)">Add to Cart</button>
-</div>
-</div>
+    <div class="flex flex-col items-center">
+      <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf"
+        class="w-20 h-20 rounded-full object-cover border-2 border-white">
+      <p class="mt-2 text-sm">Shirts</p>
+    </div>
 
+    <div class="flex flex-col items-center">
+      <img src="https://images.unsplash.com/photo-1520975918318-7f50b7b95b7f"
+        class="w-20 h-20 rounded-full object-cover border-2 border-white">
+      <p class="mt-2 text-sm">T-Shirts</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <img src="https://images.unsplash.com/photo-1516822003754-cca485356ecb"
+        class="w-20 h-20 rounded-full object-cover border-2 border-white">
+      <p class="mt-2 text-sm">Jeans</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157"
+        class="w-20 h-20 rounded-full object-cover border-2 border-white">
+      <p class="mt-2 text-sm">Kurta</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <img src="https://images.unsplash.com/photo-1588361861040-ac9b1018f6d5"
+        class="w-20 h-20 rounded-full object-cover border-2 border-white">
+      <p class="mt-2 text-sm">Footwear</p>
+    </div>
+
+  </div>
 </section>
 
-<div class="cart" id="cart">
-<button class="close-cart" onclick="closeCart()">Back</button>
-<h2>Your Cart</h2>
-<div class="cart-items" id="cartItems"></div>
-<div class="total">Total: ₹<span id="total">0</span></div>
-</div>
 
-<footer>
-<p><strong>Apna Mens Wear</strong></p>
-<p>SHOP 1 - 40 Bholaram Ustad Marg Market, Bhawarkua</p>
-<p>Indore, Madhya Pradesh</p>
-<p>Phone: 9630105490</p>
-<p><a href="https://wa.me/919630105490" target="_blank">Order on WhatsApp</a></p>
+<!-- ================= PRODUCT GRID ================= -->
+<section class="px-4 pb-10">
+  <h3 class="text-2xl font-semibold mb-6">Trending Products</h3>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <!-- PRODUCT CARD -->
+    <div class="bg-zinc-900 rounded-xl p-3">
+      <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d"
+        class="rounded-lg h-48 w-full object-cover">
+      <h4 class="mt-3 text-sm font-medium">Premium Blue Shirt</h4>
+      <p class="text-red-500 font-bold">₹799 <span class="line-through text-gray-400 text-sm">₹1199</span></p>
+      <button class="mt-2 w-full bg-white text-black py-2 rounded-lg text-sm hover:bg-gray-300 transition">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="bg-zinc-900 rounded-xl p-3">
+      <img src="https://images.unsplash.com/photo-1520975922284-6a4b0d8c9c9c"
+        class="rounded-lg h-48 w-full object-cover">
+      <h4 class="mt-3 text-sm font-medium">Stylish Black Jeans</h4>
+      <p class="text-red-500 font-bold">₹1299 <span class="line-through text-gray-400 text-sm">₹1799</span></p>
+      <button class="mt-2 w-full bg-white text-black py-2 rounded-lg text-sm hover:bg-gray-300 transition">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Duplicate for demo -->
+    <div class="bg-zinc-900 rounded-xl p-3">
+      <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157"
+        class="rounded-lg h-48 w-full object-cover">
+      <h4 class="mt-3 text-sm font-medium">Festive Kurta</h4>
+      <p class="text-red-500 font-bold">₹999 <span class="line-through text-gray-400 text-sm">₹1499</span></p>
+      <button class="mt-2 w-full bg-white text-black py-2 rounded-lg text-sm hover:bg-gray-300 transition">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="bg-zinc-900 rounded-xl p-3">
+      <img src="https://images.unsplash.com/photo-1588361861040-ac9b1018f6d5"
+        class="rounded-lg h-48 w-full object-cover">
+      <h4 class="mt-3 text-sm font-medium">Premium Sneakers</h4>
+      <p class="text-red-500 font-bold">₹1599 <span class="line-through text-gray-400 text-sm">₹2199</span></p>
+      <button class="mt-2 w-full bg-white text-black py-2 rounded-lg text-sm hover:bg-gray-300 transition">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+<section class="bg-zinc-900 py-10 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+
+    <div>
+      <div class="text-3xl mb-2">🚚</div>
+      <h4 class="font-semibold">Fast Delivery</h4>
+      <p class="text-sm text-gray-400">Quick delivery across Indore</p>
+    </div>
+
+    <div>
+      <div class="text-3xl mb-2">🔒</div>
+      <h4 class="font-semibold">Secure Payment</h4>
+      <p class="text-sm text-gray-400">100% Safe & Secure</p>
+    </div>
+
+    <div>
+      <div class="text-3xl mb-2">📞</div>
+      <h4 class="font-semibold">Customer Support</h4>
+      <p class="text-sm text-gray-400">We’re here to help</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black py-8 px-4 border-t border-zinc-800">
+  <div class="max-w-7xl mx-auto text-center text-gray-400 text-sm">
+    <h4 class="text-white font-semibold mb-2">Apna Mens Wear</h4>
+    <p>Shop 1 - 40 Bholaram Ustad Marg, Indore</p>
+    <p class="mt-2">Follow Us</p>
+    <div class="flex justify-center space-x-4 mt-2">
+      <a href="#" class="hover:text-white">Instagram</a>
+      <a href="#" class="hover:text-white">Facebook</a>
+      <a href="#" class="hover:text-white">WhatsApp</a>
+    </div>
+    <p class="mt-4 text-xs">© 2026 Apna Mens Wear. All Rights Reserved.</p>
+  </div>
 </footer>
-
-<script>
-let cart = [];
-let total = 0;
-
-function openCart(){
-document.getElementById("cart").classList.add("active");
-}
-
-function closeCart(){
-document.getElementById("cart").classList.remove("active");
-}
-
-function addToCart(name,price){
-cart.push({name,price});
-total += price;
-updateCart();
-}
-
-function updateCart(){
-let cartItems = document.getElementById("cartItems");
-cartItems.innerHTML="";
-cart.forEach(item=>{
-cartItems.innerHTML += `
-<div class="cart-item">
-<span>${item.name}</span>
-<span>₹${item.price}</span>
-</div>
-`;
-});
-document.getElementById("total").innerText = total;
-document.getElementById("count").innerText = cart.length;
-}
-</script>
 
 </body>
 </html>
