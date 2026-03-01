@@ -3,171 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apna Mens Wear | Indore</title>
+<title>Apna Mens Wear | Premium Collection</title>
 <script src="https://cdn.tailwindcss.com"></script>
 
+<style>
+body { scroll-behavior: smooth; }
+</style>
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartCount = document.getElementById("cart-count");
-
-  function updateCart() {
-    cartCount.textContent = cart.length;
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  document.querySelectorAll(".add-to-cart").forEach(button => {
-    button.addEventListener("click", function () {
-      const name = this.dataset.name;
-      const price = this.dataset.price;
-      cart.push({ name, price });
-      updateCart();
-      alert(name + " added to cart!");
-    });
+function orderProduct(productName, price) {
+  fetch("https://formspree.io/f/xbdabyza", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      product: productName,
+      price: price,
+      message: "Customer clicked Add to Cart"
+    })
+  })
+  .then(response => {
+    if(response.ok){
+      alert("Order request sent successfully!");
+    } else {
+      alert("Something went wrong!");
+    }
   });
-
-  updateCart();
-});
-
-function orderOnWhatsApp() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (cart.length === 0) {
-    alert("Cart is empty!");
-    return;
-  }
-
-  let message = "Hello Apna Mens Wear,%0A I want to order:%0A";
-  cart.forEach((item, index) => {
-    message += (index + 1) + ". " + item.name + " - ₹" + item.price + "%0A";
-  });
-
-  window.open("https://wa.me/919630105490?text=" + message, "_blank");
 }
 </script>
 
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-black text-white font-sans">
 
 <!-- HEADER -->
-<header class="bg-zinc-900 sticky top-0 z-50 shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Apna Mens Wear</h1>
-
-    <div class="hidden md:flex bg-zinc-800 px-3 py-2 rounded-lg w-1/3">
-      <input type="text" placeholder="Search products..."
-        class="bg-transparent outline-none w-full text-sm">
-    </div>
-
-    <div class="flex items-center space-x-4">
-      <button onclick="orderOnWhatsApp()" class="relative">
-        🛒
-        <span id="cart-count"
-          class="absolute -top-2 -right-2 bg-red-600 text-xs px-1 rounded-full">0</span>
-      </button>
-    </div>
+<header class="bg-black border-b border-gray-800 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+    <h1 class="text-2xl font-bold tracking-widest">APNA MENS WEAR</h1>
+    <nav class="hidden md:flex space-x-6 text-sm uppercase">
+      <a href="#shirts" class="hover:text-gray-400">Shirts</a>
+      <a href="#pants" class="hover:text-gray-400">Pants</a>
+      <a href="#contact" class="hover:text-gray-400">Contact</a>
+    </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="relative bg-cover bg-center h-[70vh]"
-  style="background-image:url('https://images.unsplash.com/photo-1520975922284-6a4b0d8c9c9c');">
-  <div class="absolute inset-0 bg-black/60"></div>
-  <div class="relative flex flex-col items-center justify-center h-full text-center">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">New Collection 2026</h2>
-    <a href="#products"
-      class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-300">
-      Shop Now
-    </a>
-  </div>
+<section class="relative h-[85vh] flex items-center justify-center text-center bg-cover bg-center"
+style="background-image:url('https://images.unsplash.com/photo-1520975922284-6a4b0d8c9c9c');">
+
+<div class="absolute inset-0 bg-black/70"></div>
+
+<div class="relative z-10">
+  <h2 class="text-5xl md:text-6xl font-bold mb-6">Premium Collection 2026</h2>
+  <p class="text-gray-300 mb-8">Luxury Styles. Perfect Fit. Indore Exclusive.</p>
+  <a href="#shirts"
+    class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-300 transition">
+    Explore Collection
+  </a>
+</div>
+
 </section>
 
-<!-- CATEGORIES -->
-<section class="py-10 px-4 text-center">
-  <h3 class="text-2xl font-semibold mb-6">Shop by Category</h3>
-  <div class="grid grid-cols-3 md:grid-cols-5 gap-4">
-    <div><div class="bg-zinc-800 p-5 rounded-full">👕</div><p class="mt-2 text-sm">Shirts</p></div>
-    <div><div class="bg-zinc-800 p-5 rounded-full">👔</div><p class="mt-2 text-sm">T-Shirts</p></div>
-    <div><div class="bg-zinc-800 p-5 rounded-full">👖</div><p class="mt-2 text-sm">Jeans</p></div>
-    <div><div class="bg-zinc-800 p-5 rounded-full">🧥</div><p class="mt-2 text-sm">Kurta</p></div>
-    <div><div class="bg-zinc-800 p-5 rounded-full">👟</div><p class="mt-2 text-sm">Footwear</p></div>
-  </div>
+<!-- SHIRTS -->
+<section id="shirts" class="py-16 px-6 max-w-7xl mx-auto">
+<h3 class="text-3xl font-bold mb-10 text-center">Premium Shirts</h3>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+<!-- Shirt 1 -->
+<div class="bg-zinc-900 p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1603252109303-2751441dd157"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Classic White Shirt</h4>
+<p class="text-red-500 font-bold mt-1">₹899</p>
+<button onclick="orderProduct('Classic White Shirt','899')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
+
+<div class="bg-zinc-900 p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Premium Blue Shirt</h4>
+<p class="text-red-500 font-bold mt-1">₹999</p>
+<button onclick="orderProduct('Premium Blue Shirt','999')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
+
+<div class="bg-zinc-900 p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Checked Casual Shirt</h4>
+<p class="text-red-500 font-bold mt-1">₹849</p>
+<button onclick="orderProduct('Checked Casual Shirt','849')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
+
+<div class="bg-zinc-900 p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Slim Fit Black Shirt</h4>
+<p class="text-red-500 font-bold mt-1">₹1099</p>
+<button onclick="orderProduct('Slim Fit Black Shirt','1099')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
+
+</div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="px-4 pb-10">
-  <h3 class="text-2xl font-semibold mb-6">Trending Products</h3>
+<!-- PANTS -->
+<section id="pants" class="py-16 px-6 bg-zinc-900">
+<h3 class="text-3xl font-bold mb-10 text-center">Premium Pants</h3>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
 
-    <!-- PRODUCT CARD -->
-    <div class="bg-zinc-900 rounded-xl p-3">
-      <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d"
-        class="rounded-lg h-48 w-full object-cover">
-      <h4 class="mt-3 text-sm font-medium">Premium Blue Shirt</h4>
-      <p class="text-red-500 font-bold">₹799
-        <span class="line-through text-gray-400 text-sm">₹1199</span>
-      </p>
-      <button data-name="Premium Blue Shirt" data-price="799"
-        class="add-to-cart mt-2 w-full bg-white text-black py-2 rounded-lg text-sm">
-        Add to Cart
-      </button>
-    </div>
+<div class="bg-black p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1516822003754-cca485356ecb"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Slim Fit Jeans</h4>
+<p class="text-red-500 font-bold mt-1">₹1299</p>
+<button onclick="orderProduct('Slim Fit Jeans','1299')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
 
-    <div class="bg-zinc-900 rounded-xl p-3">
-      <img src="https://images.unsplash.com/photo-1516822003754-cca485356ecb"
-        class="rounded-lg h-48 w-full object-cover">
-      <h4 class="mt-3 text-sm font-medium">Stylish Black Jeans</h4>
-      <p class="text-red-500 font-bold">₹1299
-        <span class="line-through text-gray-400 text-sm">₹1799</span>
-      </p>
-      <button data-name="Stylish Black Jeans" data-price="1299"
-        class="add-to-cart mt-2 w-full bg-white text-black py-2 rounded-lg text-sm">
-        Add to Cart
-      </button>
-    </div>
+<div class="bg-black p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Formal Black Pant</h4>
+<p class="text-red-500 font-bold mt-1">₹1199</p>
+<button onclick="orderProduct('Formal Black Pant','1199')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
 
-  </div>
+<div class="bg-black p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Stretchable Casual Pant</h4>
+<p class="text-red-500 font-bold mt-1">₹999</p>
+<button onclick="orderProduct('Stretchable Casual Pant','999')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
+
+<div class="bg-black p-4 rounded-xl">
+<img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126"
+class="rounded-lg h-56 w-full object-cover">
+<h4 class="mt-4 font-semibold">Premium Grey Trouser</h4>
+<p class="text-red-500 font-bold mt-1">₹1399</p>
+<button onclick="orderProduct('Premium Grey Trouser','1399')"
+class="mt-3 w-full bg-white text-black py-2 rounded-lg font-semibold">
+Add to Cart
+</button>
+</div>
+
+</div>
 </section>
 
-<!-- FEATURES -->
-<section class="bg-zinc-900 py-10 px-4 text-center">
-  <div class="grid md:grid-cols-3 gap-6">
-    <div><div class="text-3xl mb-2">🚚</div><h4>Fast Delivery</h4></div>
-    <div><div class="text-3xl mb-2">🔒</div><h4>Secure Payment</h4></div>
-    <div><div class="text-3xl mb-2">📞</div><h4>Customer Support</h4></div>
-  </div>
-</section>
-
-<!-- CONTACT (FORMSPREE) -->
-<section class="py-12 px-4 bg-black">
-  <div class="max-w-3xl mx-auto">
-    <h3 class="text-2xl font-semibold mb-6 text-center">Contact Us</h3>
-    <form action="https://formspree.io/f/xbdabyza" method="POST" class="space-y-4">
-      <input type="text" name="name" required placeholder="Your Name"
-        class="w-full p-3 rounded-lg bg-zinc-900 border border-zinc-700">
-      <input type="email" name="email" required placeholder="Your Email"
-        class="w-full p-3 rounded-lg bg-zinc-900 border border-zinc-700">
-      <textarea name="message" rows="4" required placeholder="Your Message"
-        class="w-full p-3 rounded-lg bg-zinc-900 border border-zinc-700"></textarea>
-      <button type="submit"
-        class="w-full bg-white text-black py-3 rounded-lg font-semibold">
-        Send Message
-      </button>
-    </form>
-  </div>
+<!-- CONTACT -->
+<section id="contact" class="py-16 px-6 text-center">
+<h3 class="text-3xl font-bold mb-6">Visit Our Store</h3>
+<p class="text-gray-400">Shop 1 - 40 Bholaram Ustad Marg, Indore</p>
+<p class="mt-2 text-gray-400">📞 9630105490</p>
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-zinc-900 py-8 text-center text-gray-400 text-sm">
-  <h4 class="text-white font-semibold">Apna Mens Wear</h4>
-  <p>Shop 1 - 40 Bholaram Ustad Marg, Indore</p>
-  <p class="mt-2">📞 9630105490</p>
-  <div class="mt-3">
-    <a href="https://wa.me/919630105490" class="text-green-500">WhatsApp</a>
-  </div>
-  <p class="mt-4 text-xs">© 2026 Apna Mens Wear. All Rights Reserved.</p>
+<footer class="bg-black border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
+© 2026 Apna Mens Wear | All Rights Reserved
 </footer>
 
 </body>
